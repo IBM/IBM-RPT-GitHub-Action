@@ -1,0 +1,37 @@
+name: Rational Performance Tester
+
+on: workflow_dispatch
+
+jobs:
+    Performance-Action:
+        runs-on: self-hosted
+        name: Rational Performance Tester
+        steps:
+         - name: Rational Performance Tester
+           uses: IBM/IBM-RPT-GitHub-Action@main
+           with:
+            workspace: 
+            project: 
+            suite: 
+            imShared: 
+            configFile: 
+            duration:
+            exportLog: 
+            exportStatReportList: 
+            exportStats: 
+            exportStatsFormat: 
+            exportStatsHtml: 
+            labels: 
+            overrideRmLabels:
+            overwrite: 
+            publish: 
+            publishFor: 
+            publishReports: 
+            rate:
+            reportHistory:
+            results: 
+            swapDatasets:
+            userComments: 
+            users:
+            varFile:
+            vmArgs:
