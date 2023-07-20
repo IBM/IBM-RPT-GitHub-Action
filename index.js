@@ -20,7 +20,7 @@ const main = async () => {
         var script;
 
         if (configfile) {
-            if (process.platform == 'linux') {
+            if (process.platform == 'linux' || process.platform == 'darwin') {
                 script = 'cd ' + '"' + productpath + '/cmdline"' + '\n'
                     + 'bash cmdline.sh'
                     + ' -configfile ' + '"' + configfile + '"';
@@ -65,7 +65,7 @@ const main = async () => {
             if (workspace == null || project == null || suite == null) {
                 core.setFailed("WorkSpace,Project & Suite are mandatory parameters");
             }
-            if (process.platform == 'linux') {
+            if (process.platform == 'linux' || process.platform == 'darwin') {
                 script = 'cd ' + '"' + productpath + '/cmdline"' + '\n'
                     + 'bash cmdline.sh'
                     + ' -workspace ' + '"' + workspace + '"'
@@ -158,7 +158,12 @@ const main = async () => {
         console.log(script);
         console.log('========================== Starting Command Output ===========================');
         var spawn = require("child_process").spawn, child;
-        child = spawn("powershell.exe", [filePath]);
+        if (process.platform == 'darwin') {
+            child = spawn("pwsh", [filePath]);
+        }
+        else {
+            child = spawn("powershell.exe", [filePath]);
+        }
         child.stdout.on("data", function (data) {
             console.log(" " + data);
         });
